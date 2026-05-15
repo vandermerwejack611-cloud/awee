@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simphiwe Mtetwa – Shaping Africa's Socio-Economic Future</title>
+    <meta name="description" content="Simphiwe Mtetwa is South Africa's leading Corporate Social Responsibility news, media and publishing firm — bridging the gap between corporate investment and community empowerment.">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Figtree:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <style>
+        .kicker {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--token-primary);
+            margin-bottom: 16px;
+        }
+        .serif { font-family: 'Instrument Serif', serif; font-style: italic; }
+        
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 2000;
+            background: #ffffff !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--token-border) !important;
+            margin: 0;
+            border-radius: 0;
+            padding: 15px 0;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .navbar.nav-hidden {
+            transform: translateY(-100%);
+        }
+        .navbar .nav-links a { color: var(--token-text) !important; font-weight: 600; }
+        .navbar .btn-donate-nav { background: var(--token-primary) !important; color: #fff !important; }
+        
+        /* Layout Fix: Refined Full-Width Container */
+        .container {
+            width: 100%;
+            padding: 0 3%;
+            position: relative;
+        }
+        
+        .hero-v3 {
+            width: 100%;
+            margin: 0;
+            border-radius: 0;
+            background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&h=900&fit=crop');
+        }
+        .hero-overlay h1 { color: #fff; }
+        .hero-overlay p { color: rgba(255,255,255,0.85); }
+        .stat-v3 h3 { color: var(--token-primary); }
+        .stat-v3 p { color: rgba(255,255,255,0.7); margin: 0; }
+
+        /* Sub-nav Category Filter */
+        .sub-nav-v3 {
+            background: #ffffff;
+            border-bottom: 1px solid var(--token-border);
+            padding: 12px 0;
+            position: relative;
+            z-index: 10;
+        }
+        .sub-nav-v3 a { color: var(--token-text-muted); text-decoration: none; font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; transition: color 0.3s; position: relative; }
+        .sub-nav-v3 a:hover, .sub-nav-v3 a.active { color: var(--token-text); }
+        .sub-nav-v3 a.active::after { content: ''; position: absolute; bottom: -12px; left: 0; width: 100%; height: 2px; background: var(--token-primary); }
+
+        /* Articles strip */
+        .articles-label {
+            font-size: 11px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--token-text-muted);
+            padding: 0;
+            display: block;
+            margin-bottom: 16px;
+        }
+        /* Impact Grid (3 elements) */
+        .impact-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: auto auto; gap: 20px; }
+        .impact-card { position: relative; overflow: hidden; border-radius: 40px; cursor: pointer; height: 450px; border: 1px solid var(--token-border); }
+        .impact-card.wide { grid-column: 1 / -1; height: 500px; }
+        .impact-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1), filter 0.6s ease; filter: grayscale(20%); }
+        .impact-card:hover img { transform: scale(1.05); filter: grayscale(0%) brightness(0.55); }
+        .impact-card-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 80%); opacity: 0; transition: opacity 0.4s ease, background 0.4s ease; display: flex; flex-direction: column; justify-content: flex-end; padding: 40px; z-index: 2; }
+        .impact-card:hover .impact-card-overlay { opacity: 1; background: linear-gradient(to top, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0.6) 40%, transparent 70%); }
+        .impact-card-overlay h3 { font-family: 'Instrument Serif', serif; font-size: clamp(22px, 2.5vw, 32px); color: #fff; margin-bottom: 12px; transform: translateY(20px); transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.05s; line-height: 1.2; border-left: 2px solid var(--token-primary); padding-left: 20px; }
+        .impact-card:hover .impact-card-overlay h3 { transform: translateY(0); }
+        .impact-card-overlay p { font-size: 14px; color: rgba(255, 255, 255, 0.75); line-height: 1.5; max-width: 600px; transform: translateY(20px); opacity: 0; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0.12s, opacity 0.4s ease 0.12s; }
+        .impact-card:hover .impact-card-overlay p { transform: translateY(0); opacity: 1; }
+        .impact-card-overlay .impact-tag { display: inline-block; padding: 5px 14px; border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 100px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; color: rgba(255, 255, 255, 0.8); margin-bottom: 14px; width: fit-content; transform: translateY(20px); opacity: 0; transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1) 0s, opacity 0.4s ease 0s; }
+        .impact-card:hover .impact-card-overlay .impact-tag { transform: translateY(0); opacity: 1; }
+        .impact-card-bottom { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%); padding: 30px 32px; z-index: 1; transition: opacity 0.4s ease; }
+        .impact-card:hover .impact-card-bottom { opacity: 0; }
+        .impact-card-bottom h3 { font-family: 'Instrument Serif', serif; font-size: clamp(20px, 2vw, 28px); color: #fff; margin-bottom: 6px; line-height: 1.2; }
+        .impact-card-bottom p { font-size: 12px; color: rgba(255, 255, 255, 0.6); line-height: 1.5; max-width: 500px; }    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .article-card {
+            border: 1px solid var(--token-border);
+            border-radius: var(--radius-large);
+            overflow: hidden;
+            background: #fff;
+            transition: transform 0.3s ease;
+        }
+        .article-card:hover {
+            transform: translateY(-5px);
+        }
+        .article-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+        .article-card-body {
+            padding: 24px;
+        }
+        .article-card-body span {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--token-primary);
+            display: block;
+            margin-bottom: 10px;
+        }
+        .article-card-body h3 {
+            font-size: 18px;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            font-family: 'Instrument Serif', serif;
+        }
+        .article-card-body p {
+            font-size: 14px;
+            color: var(--token-text-muted);
+            line-height: 1.6;
+        }
+
+        /* Blog Overlay Grid & Original Premium Cards */
+        .blog-overlay-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 0 3%;
+        }
+        .blog-card-overlay-alt {
+            position: relative;
+            aspect-ratio: 3/4;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s ease;
+            background: #000;
+        }
+        .blog-card-overlay-alt:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 40px 80px rgba(196, 216, 46, 0.15), 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        .blog-card-overlay-alt > img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            transition: transform 0.8s ease, filter 0.5s ease;
+            filter: grayscale(20%);
+        }
+        .blog-card-overlay-alt:hover > img {
+            transform: scale(1.1);
+            filter: grayscale(0%);
+        }
+        .blog-card-overlay-alt .card-gradient {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 30%, rgba(0, 0, 0, 0.4) 60%, rgba(0, 0, 0, 0.9) 100%);
+            z-index: 1;
+            transition: background 0.4s ease;
+        }
+        .blog-card-overlay-alt:hover .card-gradient {
+            background: linear-gradient(to bottom, transparent 20%, rgba(0, 0, 0, 0.5) 50%, rgba(0, 0, 0, 1) 100%);
+        }
+        .blog-card-overlay-alt .card-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 40px;
+            z-index: 2;
+            color: #fff;
+        }
+        .author-thumb {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            border: 2px solid var(--token-primary);
+            overflow: hidden;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: scale(0.5);
+            transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .blog-card-overlay-alt:hover .author-thumb {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .author-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .blog-card-overlay-alt h4 {
+            font-family: var(--font-serif);
+            font-size: clamp(20px, 2vw, 28px);
+            line-height: 1.3;
+            margin-bottom: 12px;
+            border-left: 2px solid var(--token-primary);
+            padding-left: 20px;
+            font-weight: 400;
+        }
+        .blog-card-overlay-alt p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.4s ease;
+        }
+        .blog-card-overlay-alt:hover .card-content p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Insights Grid & Card V3 (from Compact) */
+        .insights-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            padding: 0 3%;
+            margin-bottom: 80px;
+        }
+        .podcast-card-v3 {
+            cursor: pointer;
+            transition: transform 0.4s ease;
+            text-align: left;
+            text-decoration: none;
+            display: block;
+            color: inherit;
+        }
+        .podcast-card-v3:hover {
+            transform: translateY(-8px);
+        }
+        .podcast-card-v3 .thumb-wrap {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16/10;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            border: 1px solid var(--token-border);
+        }
+        .podcast-card-v3 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+        .podcast-card-v3:hover img {
+            transform: scale(1.05);
+        }
+        .podcast-card-v3 .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(255,255,255,0.95);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .podcast-card-v3 .type-tag {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: #fff;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .podcast-card-v3 h4 {
+            font-family: 'Instrument Serif', serif;
+            font-size: 26px;
+            margin-bottom: 12px;
+            line-height: 1.2;
+            color: var(--token-text);
+            font-style: italic;
+        }
+        .podcast-card-v3 p {
+            font-size: 14px;
+            color: var(--token-text-muted);
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .podcast-card-v3 .date-tag {
+            font-size: 11px;
+            color: var(--token-text-muted);
+            font-weight: 600;
+            display: block;
+            margin-top: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 1024px) {
+            .insights-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 768px) {
+            .insights-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* About Us / Impact Section (Expanded Creative Container) */
+        .about-us-compact {
+            margin: 80px 0;
+            background: #fff;
+            border: 1px solid var(--token-border);
+            border-radius: 60px;
+            overflow: hidden;
+            position: relative;
+        }
+        .about-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+        }
+        .about-visual {
+            position: relative;
+            padding: 40px;
+        }
+        .about-visual .img-wrap {
+            position: relative;
+            border-radius: 40px;
+            overflow: hidden;
+            height: 650px;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+        }
+        .about-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .about-visual:hover img {
+            transform: scale(1.05);
+        }
+        .vision-badge {
+            position: absolute;
+            right: 0;
+            top: 80px;
+            background: var(--token-primary);
+            color: #fff;
+            padding: 40px;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(196, 216, 46, 0.3);
+            text-align: center;
+            min-width: 180px;
+            z-index: 5;
+        }
+        .vision-badge .year {
+            font-size: 40px;
+            font-family: 'Instrument Serif', serif;
+            font-weight: 400;
+            line-height: 1;
+        }
+        .vision-badge .label {
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            opacity: 0.9;
+        }
+        .about-text-content {
+            padding: 80px 10% 80px 60px;
+        }
+        .about-text-content h2 {
+            font-size: clamp(36px, 5vw, 64px);
+            margin-bottom: 30px;
+            line-height: 1.1;
+            font-family: 'Figtree', sans-serif;
+            font-weight: 800;
+        }
+        .about-stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 50px;
+        }
+        .about-stat h3 {
+            color: var(--token-primary);
+            font-size: 44px;
+            margin-bottom: 10px;
+            font-family: 'Instrument Serif', serif;
+            font-style: italic;
+        }
+        .about-stat p {
+            font-size: 12px;
+            color: var(--token-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 800;
+        }
+
+        @media (max-width: 1024px) {
+            .about-us-grid { grid-template-columns: 1fr; }
+            .about-text-content { padding: 40px 5%; }
+            .about-visual { padding: 20px; }
+            .about-visual .img-wrap { height: 450px; }
+        }
+
+        /* Parallax Reveal Strategy Section (from Compact) */
+        .parallax-reveal-section {
+            position: relative;
+            height: 120vh;
+            overflow: hidden;
+            background: #ffffff;
+            z-index: 0;
+            margin: -120px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .vertical-ticker-container {
+            position: absolute;
+            inset: 0;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            padding: 0 5%;
+            mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to bottom, transparent, black 15%, black 85%, transparent);
+        }
+        .ticker-column {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            width: 100%;
+        }
+        .ticker-col-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+            animation-name: verticalTicker;
+        }
+        .col-1 .ticker-col-inner { animation-duration: 40s; }
+        .col-2 .ticker-col-inner { animation-duration: 60s; animation-direction: reverse; }
+        .col-3 .ticker-col-inner { animation-duration: 50s; }
+
+        @keyframes verticalTicker {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-50%); }
+        }
+        .ticker-img-box {
+            width: 100%;
+            height: 600px;
+            border-radius: 60px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+            filter: grayscale(100%) brightness(0.9);
+            opacity: 0.7;
+            transition: all 0.6s ease;
+        }
+        .ticker-img-box:hover {
+            filter: grayscale(0%) brightness(1);
+            opacity: 1;
+            transform: scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+        .ticker-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .parallax-overlay-content {
+            position: relative;
+            z-index: 20;
+            pointer-events: none;
+            text-align: center;
+            padding: 80px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(25px);
+            border-radius: 60px;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            max-width: 900px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+        }
+        .parallax-overlay-content h2 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(48px, 8vw, 110px);
+            color: #1a1a1a;
+            line-height: 1;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+        .parallax-overlay-content p {
+            font-size: 22px;
+            color: rgba(0, 0, 0, 0.6);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Massive CTA Footer (from Compact) */
+        .massive-cta {
+            padding: 120px 5%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--token-bg-soft);
+            border: 1px solid var(--token-border);
+            border-radius: 60px;
+            margin: 80px 0;
+        }
+        .massive-cta h2 {
+            font-size: clamp(40px, 8vw, 120px);
+            margin-bottom: 50px;
+            line-height: 1.1;
+            font-family: 'Figtree', sans-serif;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+        .massive-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--token-primary);
+            color: #fff;
+            padding: 24px 48px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(196, 216, 46, 0.3);
+        }
+        .massive-cta-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 20px 40px rgba(196, 216, 46, 0.4);
+        }
+        .massive-cta-btn i {
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            color: #000;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+        }
+
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* CTA band */
+        .cta-band {
+            background: #111;
+            color: #fff;
+            padding: 100px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            border-top: 1px solid var(--token-border);
+            border-bottom: 1px solid var(--token-border);
+            border-left: 1px solid var(--token-border);
+            border-right: 1px solid var(--token-border);
+            overflow: hidden;
+        }
+        .cta-band h2 {
+            font-size: clamp(32px, 4vw, 56px);
+            font-family: 'Instrument Serif', serif;
+            max-width: 600px;
+            line-height: 1.1;
+        }
+        .btn-cta {
+            flex-shrink: 0;
+            background: var(--token-primary);
+            color: #fff;
+            padding: 16px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            white-space: nowrap;
+            transition: opacity 0.2s;
+        }
+        /* Hero slides */
+        .hero-v3 { position: relative; height: 90vh; overflow: hidden; background: #111; }
+        .hero-slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1.5s ease-in-out; display: flex; align-items: center; padding: 260px 0 100px; z-index: 1; overflow: hidden; }
+        .hero-slide.active { opacity: 1; z-index: 5; }
+        .hero-slide.was-active { z-index: 4; opacity: 0; }
+        .hero-slide-bg { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
+        .hero-slide-bg img, .hero-slide-bg video { width: 100%; height: 100%; object-fit: cover; }
+        .hero-slide-bg img { 
+            transform: scale(1.1); filter: brightness(1.05); 
+            transition: transform 6s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+        }
+        .hero-slide.active .hero-slide-bg img { transform: scale(1); }
+        .hero-overlay { position: absolute; inset: 0; background: transparent; z-index: 1; }
+        .hero-title-wrap { 
+            position: relative; z-index: 2; opacity: 0; transform: translateY(40px); 
+            transition: 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s; 
+        }
+        .hero-slide.active .hero-title-wrap { opacity: 1; transform: translateY(0); }
+
+        /* Hero Tabs & Progress */
+        .hero-tabs { position: absolute; bottom: 40px; left: 3%; display: flex; gap: 40px; z-index: 20; }
+        .hero-tab { position: relative; cursor: pointer; padding-top: 15px; width: 120px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--token-text); opacity: 0.3; transition: 0.3s; }
+        .hero-tab.active { opacity: 1; }
+        .hero-tab::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: rgba(0,0,0,0.1); }
+        .tab-progress { position: absolute; top: 0; left: 0; width: 0%; height: 2px; background: var(--token-primary); z-index: 2; }
+        
+        .hero-title-wrap { max-width: 700px; }
+        .hero-title-wrap h1 { font-family: 'Figtree', sans-serif; font-size: clamp(36px,6vw,80px); font-weight: 800; line-height: 1.05; color: #fff; margin-bottom: 20px; }
+        .hero-title-wrap .serif { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
+        .hero-title-wrap p { font-size: 18px; color: rgba(255,255,255,0.75); max-width: 500px; margin-bottom: 36px; }
+        .kicker-pill { display: inline-block; background: var(--token-primary); color: #fff; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; padding: 6px 16px; border-radius: 100px; margin-bottom: 20px; }
+
+        /* Editorial split */
+        .editorial-split { 
+            background: var(--token-bg); 
+            border-bottom: 1px solid var(--token-border);
+            overflow: hidden;
+            position: relative;
+        }
+        .editorial-split h2 { font-family: 'Figtree', sans-serif; font-size: clamp(28px, 4vw, 52px); font-weight: 800; line-height: 1.1; margin-bottom: 30px; }
+        .editorial-split h2 .serif { font-family: 'Instrument Serif', serif; font-weight: 400; }
+        .editorial-split-img { position: relative; border-radius: var(--radius-large); overflow: hidden; height: 480px; border: 1px solid var(--token-border); }
+        .editorial-split-img img { width: 100%; height: 100%; object-fit: cover; }
+
+        /* Spotlight Advanced Motion */
+        .testimonial-card:not(.active) {
+            opacity: 0.3;
+            filter: grayscale(1) blur(2px);
+            transform: scale(0.92);
+        }
+        .testimonial-card.active {
+            opacity: 1;
+            filter: none;
+            transform: scale(1);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.12);
+            border-color: var(--token-primary);
+            z-index: 5;
+        }
+        .testimonial-image-wrapper { position: relative; width: 100%; height: 100%; overflow: hidden; }
+        .img-static, .img-active { 
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; 
+            transition: opacity 1.5s cubic-bezier(0.19, 1, 0.22, 1), transform 1.5s cubic-bezier(0.19, 1, 0.22, 1); 
+        }
+        .img-active { opacity: 0; transform: scale(1.1); }
+        .testimonial-card.active .img-active { opacity: 1; transform: scale(1); }
+        .testimonial-card.active .img-static { opacity: 0.3; }
+        .testimonial-card.active .testimonial-quote { animation: spotlightFadeIn 1s forwards 0.4s; opacity: 0; }
+        @keyframes spotlightFadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* Editorial Video Background */
+        .editorial-split.video-active h2, .editorial-split.video-active p, .editorial-split.video-active a {
+            color: #fff !important;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        .section-bg-video {
+            position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
+            opacity: 0; transition: opacity 0.6s ease; z-index: 0; pointer-events: none;
+            background: #000;
+        }
+        .editorial-split.video-active .section-bg-video { opacity: 1; }
+        .section-bg-overlay { position: absolute; inset: 0; background: rgba(0,0,0,0.4); z-index: 1; opacity: 0; transition: opacity 0.5s; pointer-events: none; }
+        .editorial-split.video-active .section-bg-overlay { opacity: 1; }
+        .editorial-content { position: relative; z-index: 10; }
+
+        /* Spotlight slider */
+        .spotlight-section { 
+            padding: 80px 0; 
+            background: #ffffff; 
+            border-bottom: 1px solid var(--token-border); 
+            border-left: 1px solid var(--token-border);
+            border-right: 1px solid var(--token-border);
+            overflow: hidden; 
+        }
+        .spotlight-header { padding: 0; margin-bottom: 50px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .spotlight-header h2 { font-family: 'Figtree', sans-serif; font-size: clamp(28px, 4vw, 48px); font-weight: 800; margin-bottom: 6px; }
+        .slider-controls { display: flex; gap: 10px; flex-shrink: 0; }
+        .slider-btn { width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--token-border); background: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 14px; transition: all 0.3s; color: var(--token-text); }
+        .slider-btn:hover { background: var(--token-text); color: #fff; border-color: var(--token-text); }
+        .testimonial-slider-wrapper { position: relative; padding-left: 3%; width: 100%; overflow: hidden; }
+        .testimonial-track { display: flex; gap: 30px; transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1); cursor: grab; }
+        .testimonial-track:active { cursor: grabbing; }
+        .testimonial-card { flex: 0 0 82vw; background: #fff; border-radius: 32px; display: grid; grid-template-columns: 1fr 1.2fr; overflow: hidden; min-height: 500px; border: 1px solid var(--token-border); box-shadow: 0 10px 40px rgba(0,0,0,0.02); transition: all 1s cubic-bezier(0.19, 1, 0.22, 1); position: relative; }
+        .testimonial-card .testimonial-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .testimonial-quote { font-family: 'Instrument Serif', serif; font-size: 22px; line-height: 1.5; color: var(--token-text); margin-bottom: 30px; }
+        .author-info h4 { font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+        .author-info p { font-size: 13px; color: var(--token-text-muted); margin: 0; }
+        
+        /* Animated Line Link Shared Styles */
+        .hero-read-link, .forum-link, .spotlight-read-link, .read-more, .animated-line-link {
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            position: relative;
+            padding-bottom: 8px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 10;
+        }
+        
+        .hero-read-link { color: #fff; font-size: 14px; }
+        .forum-link { color: var(--token-primary); font-size: 12px; margin-top: 10px; }
+        .spotlight-read-link { color: var(--token-primary); font-size: 13px; margin-top: 24px; }
+        .read-more { color: var(--token-primary); font-size: 13px; margin-top: 16px; }
+
+        .hero-read-link::after, .forum-link::after, .spotlight-read-link::after, .read-more::after, .animated-line-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: currentColor;
+            transform: scaleX(0.3);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .hero-read-link:hover, .forum-link:hover, .spotlight-read-link:hover, .read-more:hover, .animated-line-link:hover {
+            gap: 18px;
+            opacity: 1;
+        }
+
+        .hero-read-link:hover::after, .forum-link:hover::after, .spotlight-read-link:hover::after, .read-more:hover::after, .animated-line-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .hero-read-link i, .forum-link i, .spotlight-read-link i, .read-more i, .animated-line-link i {
+            transition: transform 0.4s ease;
+        }
+
+        .hero-read-link:hover i, .forum-link:hover i, .spotlight-read-link:hover i, .read-more:hover i, .animated-line-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* ====== OUR IMPACT SECTION ====== */
+        .impact-section {
+            width: 100%;
+            padding: 120px 0;
+            background: var(--token-bg);
+            position: relative;
+            z-index: 12;
+        }
+        .impact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            padding: 0;
+        }
+        .impact-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 40px;
+            cursor: pointer;
+            height: 450px;
+        }
+        .impact-card.wide {
+            grid-column: 1 / -1;
+            height: 500px;
+        }
+        .impact-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .impact-card:hover img {
+            transform: scale(1.05);
+        }
+        .impact-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 80%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            z-index: 2;
+        }
+        .impact-card:hover .impact-card-overlay {
+            opacity: 1;
+        }
+        .impact-card-overlay h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(22px, 2.5vw, 32px);
+            color: #fff;
+            margin-bottom: 12px;
+            border-left: 2px solid var(--token-primary);
+            padding-left: 20px;
+        }
+        .impact-card-overlay p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.5;
+            max-width: 600px;
+        }
+        .impact-card-bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.75) 0%, transparent 100%);
+            padding: 30px 32px;
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+        .impact-card:hover .impact-card-bottom {
+            opacity: 0;
+        }
+        .impact-card-bottom h3 {
+            font-family: 'Instrument Serif', serif;
+            font-size: clamp(20px, 2vw, 28px);
+            color: #fff;
+            margin-bottom: 6px;
+        }
+        .impact-card-bottom p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Navbar -->
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <div class="logo-group">
+                <img src="https://www.image2url.com/r2/default/images/1777649055436-1057d549-9fe6-4e04-b970-568610a4c0a0.png"
+                    alt="Simphiwe Mtetwa" style="height: 28px; width: auto;">
+            </div>
+            <ul class="nav-links">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Expertise</a></li>
+                <li><a href="#">Think Tank</a></li>
+                <li><a href="https://csiindaba.africa/" target="_blank">CSI Indaba</a></li>
+                <li><a href="#">Podcast</a></li>
+                <li><a href="#">Insights</a></li>
+            </ul>
+            <a href="#" class="btn-donate-nav">Book a Consultation</a>
+        </div>
+    </nav>
+
+
+    <main>
+        <!-- Hero Section -->
+        <div class="hero-v3">
+
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <div class="hero-slide-bg">
+                    <video autoplay muted playsinline loop style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;">
+                        <source src="https://raw.githubusercontent.com/vandermerwejack611-cloud/videos/main/Wan_Video_Generate_hero%20section%20aimation%20so%20maybe%20just%20make%20hiw%20turn%20to%20thfront%20.mp4" type="video/mp4">
+                    </video>
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="container" style="padding: 0 3%;">
+                    <div class="hero-title-wrap">
+                        <div class="kicker-pill">CSI Indaba</div>
+                        <h1>Why Inequality Persists:<br>The <span class="serif">Masters' Deal</span>.</h1>
+                        <p>We convert ambition into focused action. Transforming Corporate Social Investment frameworks across the continent.</p>
+                        <a href="#" class="hero-read-link">Read the article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <div class="hero-slide-bg">
+                    <img src="https://simphiwemtetwa.africa/wp-content/uploads/2026/04/SIMPHIWE-MTETWA-1920-x-825-mm-10-scaled.jpg" alt="CSI Magazine">
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="container" style="padding: 0 3%;">
+                    <div class="hero-title-wrap">
+                        <div class="kicker-pill">CSI Magazine</div>
+                        <h1>Dismantling Inequality.<br><span class="serif">A 25-Year Vision</span> In Motion.</h1>
+                        <p>We convert ambition into focused action. Transforming Corporate Social Investment frameworks across the continent.</p>
+                        <a href="#" class="hero-read-link">Discover our methodology <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="hero-slide">
+                <div class="hero-slide-bg">
+                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1920&h=1000&fit=crop" alt="CSI Awards">
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="container" style="padding: 0 3%;">
+                    <div class="hero-title-wrap">
+                        <div class="kicker-pill">CSI Awards</div>
+                        <h1>Unemployment Is Costing<br>South Africans <span class="serif">Half A Trillion</span> Rand.</h1>
+                        <p>A deep dive into the true cost of systemic barriers and the solutions we can build today.</p>
+                        <a href="#" class="hero-read-link">Read more <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="hero-slide">
+                <div class="hero-slide-bg">
+                    <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=1920&h=1000&fit=crop" alt="Media">
+                    <div class="hero-overlay"></div>
+                </div>
+                <div class="container" style="padding: 0 3%;">
+                    <div class="hero-title-wrap">
+                        <div class="kicker-pill">Media</div>
+                        <h1>Conversations That<br><span class="serif">Shape The Future</span> Of CSI.</h1>
+                        <p>Listen to insights and discussions with the brightest minds across the African continent on systemic social change.</p>
+                        <a href="#" class="hero-read-link">Listen Now <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="container">
+                <div class="hero-tabs" style="left: 3%;">
+                    <div class="hero-tab active" data-slide="0"><div class="tab-progress"></div>CSI Indaba</div>
+                    <div class="hero-tab" data-slide="1"><div class="tab-progress"></div>CSI Magazine</div>
+                    <div class="hero-tab" data-slide="2"><div class="tab-progress"></div>CSI Awards</div>
+                    <div class="hero-tab" data-slide="3"><div class="tab-progress"></div>Media</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Editorial Split (Our Mission) -->
+        <section class="editorial-split reveal" id="editorialSection" style="padding: 140px 0 100px;">
+            <video id="sectionBgVideo" class="section-bg-video" playsinline loop></video>
+            <div class="section-bg-overlay"></div>
+
+            <!-- Video Controls -->
+            <div id="videoVolumeControl" style="display: none; position: absolute; bottom: 40px; right: 40px; align-items: center; gap: 20px; background: rgba(0,0,0,0.65); padding: 14px 24px; border-radius: 50px; backdrop-filter: blur(15px); color: #fff; z-index: 100; border: 1px solid rgba(255,255,255,0.1);">
+                <div onclick="toggleSectionVideo()" style="cursor: pointer; width: 30px; display: flex; justify-content: center;">
+                    <i class="fas fa-pause" id="playPauseIcon"></i>
+                </div>
+                <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.2);"></div>
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <i class="fas fa-volume-up" id="volumeIcon"></i>
+                    <input type="range" id="videoVolumeRange" min="0" max="1" step="0.05" value="1" style="width: 80px; accent-color: var(--token-primary); cursor: pointer;">
+                </div>
+            </div>
+
+            <!-- Close Video -->
+            <div id="closeSectionVideoBtn" onclick="stopSectionVideo()" style="display: none; position: absolute; top: 40px; right: 40px; color: #fff; font-size: 24px; cursor: pointer; z-index: 110; width: 44px; height: 44px; align-items: center; justify-content: center; background: rgba(255,255,255,0.15); border-radius: 50%; backdrop-filter: blur(5px); transition: 0.3s;">
+                <i class="fas fa-times"></i>
+            </div>
+
+            <div class="container" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; position: relative; z-index: 10;">
+                <div class="editorial-content">
+                    <span class="kicker">Our Mission</span>
+                    <h2 id="editorialHeading" style="font-size: clamp(32px, 5vw, 64px); font-family: 'Figtree', sans-serif; font-weight: 800; margin-bottom: 30px; line-height: 1.1; transition: all 0.8s cubic-bezier(0.19, 1, 0.22, 1);">Committed To Dismantling Inequality And Driving <span class="serif">Measurable, Noticeable Change.</span></h2>
+                    <p style="font-size: 20px; color: var(--token-text-muted); margin-bottom: 40px; line-height: 1.5;">We are more than consultants; we are architects of African progress. Simphiwe Mtetwa specializes in creating content that bridges the gap between corporate social investment and real-world community empowerment.</p>
+                    <a href="#" class="animated-line-link" style="color: var(--token-primary); font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">MORE ABOUT THE FORUM <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div id="editorialThumbnail" onclick="playSectionVideo()" class="editorial-split-img" style="height: 520px; border-radius: 40px; cursor: pointer; position: relative; transition: opacity 0.5s;">
+                    <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&h=800&fit=crop" alt="Conference Video Thumbnail" style="opacity: 0.8; transition: opacity 0.3s;">
+                    <!-- Play Button Overlay -->
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 70px; height: 70px; background: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 35px rgba(0,0,0,0.2);">
+                        <i class="fas fa-play" style="color: #111; margin-left: 4px; font-size: 24px;"></i>
+                    </div>
+                    <div style="position: absolute; bottom: 30px; left: 30px; color: #fff; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Watch full video</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Spotlight Section -->
+        <section class="spotlight-section reveal" style="padding: 40px 0; background: #fff;">
+            <div class="container">
+                <div class="spotlight-header" style="margin-bottom: 20px;">
+                    <div>
+                        <span class="kicker">Read the article</span>
+                        <h2 style="font-size: clamp(36px, 5vw, 64px); font-family: 'Figtree', sans-serif; font-weight: 800; margin-bottom: 16px;">Spotlight</h2>
+                        <p style="font-size: 18px; color: var(--token-text-muted); max-width: 600px;">Articles of the leaders shaping the future of CSI in Africa.</p>
+                    </div>
+                    <div class="slider-controls">
+                        <button class="slider-btn" onclick="slideTestimonial(-1)"><i class="fas fa-chevron-left"></i></button>
+                        <button class="slider-btn" onclick="slideTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+                
+                <div class="testimonial-slider-wrapper">
+                    <div class="testimonial-track" id="testiTrack">
+                    <!-- Card 1 -->
+                    <div class="testimonial-card active">
+                        <div class="testimonial-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=1200&h=800&fit=crop" class="img-static" alt="Johan de Vries">
+                            <img src="https://images.unsplash.com/photo-1519085184628-66e73702e48a?w=1200&h=800&fit=crop" class="img-active" alt="Johan de Vries Active">
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-quote">"Working with Simphiwe Mtetwa has transformed how we approach community investment. His vision for 2052 isn't just a dream—it's a roadmap that we are actively building today."</p>
+                            <div class="author-info">
+                                <h4>Johan de Vries</h4>
+                                <p>Founder, Green Impact SA</p>
+                            </div>
+                            <a href="#" class="animated-line-link" style="color: var(--token-primary); margin-top: 20px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Read the article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=1200&h=800&fit=crop" class="img-static" alt="Sarah Nkosi">
+                            <img src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=1200&h=800&fit=crop" class="img-active" alt="Sarah Nkosi Active">
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-quote">"The clarity of thought and the systemic approach to solving inequality is what sets Simphiwe Mtetwa apart. His ability to connect strategy with grassroots impact is revolutionary."</p>
+                            <div class="author-info">
+                                <h4>Sarah Nkosi</h4>
+                                <p>Director of Sustainability, TechAfrica</p>
+                            </div>
+                            <a href="#" class="animated-line-link" style="color: var(--token-primary); margin-top: 20px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Read the article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="testimonial-card">
+                        <div class="testimonial-image-wrapper">
+                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1200&h=800&fit=crop" class="img-static" alt="Michael Ndlovu">
+                            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=1200&h=800&fit=crop" class="img-active" alt="Michael Ndlovu Active">
+                        </div>
+                        <div class="testimonial-content">
+                            <p class="testimonial-quote">"A deep dive into the socio-economic realities of Africa. The podcast alone has reshaped our board's approach to ESG reporting."</p>
+                            <div class="author-info">
+                                <h4>Michael Ndlovu</h4>
+                                <p>CEO, Pan-African Ventures</p>
+                            </div>
+                            <a href="#" class="animated-line-link" style="color: var(--token-primary); margin-top: 20px; font-size: 14px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px;">Read the article <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Articles -->
+        <section class="reveal" style="padding: 40px 0;">
+
+            <div class="container">
+                <div style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end;">
+                    <div>
+                        <span class="kicker">Insights</span>
+                        <h2 style="font-size: clamp(36px, 5vw, 64px); font-family: 'Figtree', sans-serif; font-weight: 800; margin-bottom: 16px;">Recent <span class="serif">Blog</span> Articles</h2>
+                        <p style="font-size: 18px; color: var(--token-text-muted); max-width: 600px;">Thoughtful analysis and sharp perspectives on corporate social investment across Africa.</p>
+                    </div>
+                    <a href="#" style="color: var(--token-primary); text-decoration: none; font-weight: 700; font-size: 14px; flex-shrink: 0;">View All →</a>
+                </div>
+                
+                <div class="insights-grid">
+                <!-- Podcast Card 1 -->
+                <a href="#" class="podcast-card-v3" onclick="showView('view-podcast-01')">
+                    <div class="thumb-wrap">
+                        <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?w=800&h=600&fit=crop" alt="Conversations">
+                        <div class="play-overlay">
+                            <i class="fas fa-play" style="color: #000; margin-left: 4px; font-size: 18px;"></i>
+                        </div>
+                        <div class="type-tag">Audio Book</div>
+                    </div>
+                    <h4>Conversations That Shape The Future Of Africa</h4>
+                    <p>Simphiwe Mtetwa discusses systemic change with influential voices, uncovering the strategies that drive impactful development.</p>
+                    <div class="animated-line-link" style="color: var(--token-primary); margin-top: 0; padding-bottom: 4px; font-size: 16px; font-weight: 400; text-transform: none; letter-spacing: 0; font-style: italic; font-family: 'Instrument Serif', serif;">
+                        Read/Listen Article <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- Podcast Card 2 -->
+                <a href="#" class="podcast-card-v3" onclick="showView('view-podcast-02')">
+                    <div class="thumb-wrap">
+                        <img src="https://images.unsplash.com/photo-1551818255-e6e10975bc17?w=800&h=600&fit=crop" alt="Dismantling Inequality">
+                        <div class="play-overlay">
+                            <i class="fas fa-play" style="color: #000; margin-left: 4px; font-size: 18px;"></i>
+                        </div>
+                        <div class="type-tag">Audio Book</div>
+                    </div>
+                    <h4>Dismantling Inequality: A Framework For Change</h4>
+                    <p>A deep dive into socio-economic realities and measurable change. How frameworks are rebuilt for inclusive growth.</p>
+                    <div class="animated-line-link" style="color: var(--token-primary); margin-top: 0; padding-bottom: 4px; font-size: 16px; font-weight: 400; text-transform: none; letter-spacing: 0; font-style: italic; font-family: 'Instrument Serif', serif;">
+                        Read/Listen Article <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- Podcast Card 3 -->
+                <a href="#" class="podcast-card-v3" onclick="showView('view-podcast-03')">
+                    <div class="thumb-wrap">
+                        <img src="https://images.unsplash.com/photo-1559523161-0fc0d8b38a7a?w=800&h=600&fit=crop" alt="Future of CSI">
+                        <div class="play-overlay">
+                            <i class="fas fa-play" style="color: #000; margin-left: 4px; font-size: 18px;"></i>
+                        </div>
+                        <div class="type-tag">Audio Book</div>
+                    </div>
+                    <h4>The Future Of Corporate Social Investment</h4>
+                    <p>Exploring how CSI is evolving to meet modern demands, moving beyond charity to sustainable, long-term empowerment.</p>
+                    <div class="animated-line-link" style="color: var(--token-primary); margin-top: 0; padding-bottom: 4px; font-size: 16px; font-weight: 400; text-transform: none; letter-spacing: 0; font-style: italic; font-family: 'Instrument Serif', serif;">
+                        Read/Listen Article <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
+
+                <!-- Podcast Card 4 (Article Update) -->
+                <a href="#" class="podcast-card-v3" onclick="showView('view-insight-7')">
+                    <div class="thumb-wrap">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=800&h=600&fit=crop" alt="Masters Deal">
+                        <div class="type-tag" style="font-size: 9px;">Conference, CSI Insight</div>
+                    </div>
+                    <h4>Why Inequality Persists: The Masters' Deal And Its Legacy</h4>
+                    <p>There is a detail from South Africa's corporate history that deserves far greater attention than it receives—the original settlement calculation.</p>
+                    <div class="animated-line-link" style="color: var(--token-primary); margin-top: 0; padding-bottom: 4px; font-size: 16px; font-weight: 400; text-transform: none; letter-spacing: 0; font-style: italic; font-family: 'Instrument Serif', serif;">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <span class="date-tag">April 15, 2026</span>
+                </a>
+
+                <!-- Podcast Card 5 (Article Update) -->
+                <a href="#" class="podcast-card-v3" onclick="showView('view-insight-8')">
+                    <div class="thumb-wrap">
+                        <img src="https://images.unsplash.com/photo-1507537297725-24a1c029d3ca?w=800&h=600&fit=crop" alt="Vision in Motion">
+                        <div class="type-tag" style="font-size: 9px;">Editor's View, South Africa</div>
+                    </div>
+                    <h4>A 25-Year Vision In Motion: Bridging The Gap</h4>
+                    <p>What an extraordinary month this has been. As you read this—perhaps early in the morning—my thoughts are on the future.</p>
+                    <div class="animated-line-link" style="color: var(--token-primary); margin-top: 0; padding-bottom: 4px; font-size: 16px; font-weight: 400; text-transform: none; letter-spacing: 0; font-style: italic; font-family: 'Instrument Serif', serif;">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <span class="date-tag">April 13, 2026</span>
+                </a>
+
+                <!-- Podcast Card 6 (Article Update) -->
+                <a href="#" class="podcast-card-v3" onclick="showView('view-insight-2')">
+                    <div class="thumb-wrap">
+                        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=800&h=600&fit=crop" alt="Unemployment Cost">
+                        <div class="type-tag" style="font-size: 9px;">Insight</div>
+                    </div>
+                    <h4>Unemployment Is Costing South Africans Half A Trillion Rand Annually</h4>
+                    <p>South Africa's unemployment crisis is no longer simply a labour market problem. It is a systemic GDP bleed.</p>
+                    <div class="animated-line-link" style="color: var(--token-primary); margin-top: 0; padding-bottom: 4px; font-size: 16px; font-weight: 400; text-transform: none; letter-spacing: 0; font-style: italic; font-family: 'Instrument Serif', serif;">
+                        Read More <i class="fas fa-arrow-right"></i>
+                    </div>
+                    <span class="date-tag">March 23, 2026</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Most Listened Episodes — Immersive Experience -->
+        <section class="podcasts-section-v3 reveal" style="background: var(--token-bg-soft); overflow: hidden; padding: 40px 0;">
+            <div class="container">
+                <div style="text-align: left; margin-bottom: 20px;">
+                    <span class="kicker">Most Listened</span>
+                    <h2 style="font-size: clamp(36px, 5vw, 56px); font-family: 'Figtree', sans-serif; font-weight: 800; margin-bottom: 16px;">Our Most <span class="serif">Listened</span> Episodes</h2>
+                    <p style="font-size: 18px; color: var(--token-text-muted); max-width: 700px; margin: 0;">Dive into our top-rated episodes, featuring leading thinkers, makers, and compelling stories that shape our world.</p>
+                </div>
+                    
+                <!-- Blog Overlay Grid - Most Listened -->
+                <div class="blog-overlay-grid" style="padding: 0;">
+                    <!-- Article 1 -->
+                    <div class="blog-card-overlay-alt">
+                        <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=800&h=1000&fit=crop" alt="Management">
+                        <div class="card-gradient"></div>
+                        <div class="card-content">
+                            <div class="author-thumb">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop" alt="Johan de Vries">
+                            </div>
+                            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--token-primary); display: block; margin-bottom: 10px;">Management</span>
+                            <h4>A Management Team Is Only As Sharp As The Chairman.</h4>
+                            <p>Johan de Vries on leadership dynamics in CSI initiatives.</p>
+                            <a href="#" class="animated-line-link" style="color: var(--token-primary); margin-top: 20px;">
+                                Read article <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Article 2 -->
+                    <div class="blog-card-overlay-alt">
+                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=1000&fit=crop" alt="Bilateral Meetings">
+                        <div class="card-gradient"></div>
+                        <div class="card-content">
+                            <div class="author-thumb">
+                                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop" alt="Sarah Nkosi">
+                            </div>
+                            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--token-primary); display: block; margin-bottom: 10px;">Bilateral Meetings</span>
+                            <h4>Without Bilateral Meetings, There Is No Insight Into The Work.</h4>
+                            <p>Sarah Nkosi exploring the necessity of cross-sector dialogue.</p>
+                            <a href="#" class="animated-line-link" style="color: var(--token-primary); margin-top: 20px;">
+                                Read article <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Article 3 -->
+                    <div class="blog-card-overlay-alt">
+                        <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=800&h=1000&fit=crop" alt="Strategy">
+                        <div class="card-gradient"></div>
+                        <div class="card-content">
+                            <div class="author-thumb">
+                                <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=100&h=100&fit=crop" alt="Michael Ndlovu">
+                            </div>
+                            <span style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; color: var(--token-primary); display: block; margin-bottom: 10px;">Strategy</span>
+                            <h4>Strategy Is The Link Between Goals And Concrete Results.</h4>
+                            <p>Michael Ndlovu on bridging the gap in ESG performance.</p>
+                            <a href="#" class="animated-line-link" style="color: var(--token-primary); margin-top: 20px;">
+                                Read article <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+        <!-- Our Impact Section -->
+        <section class="impact-section reveal" id="impactSection" style="padding: 40px 0;">
+            <div class="container">
+                <div style="margin-bottom: 20px;">
+                    <span class="kicker">Our Impact</span>
+                    <h2 style="font-size: clamp(36px, 5vw, 64px); font-family: 'Figtree', sans-serif; font-weight: 800; margin-bottom: 16px;">Find The <span class="serif">Right</span> Solutions For You</h2>
+                    <p style="font-size: 18px; color: var(--token-text-muted); max-width: 600px; line-height: 1.6;">Advancing the discourse through intellectual rigour and strategic community development news.</p>
+                </div>
+
+                <div class="impact-grid" style="padding: 0;">
+                <!-- Top Left Card -->
+                <div class="impact-card reveal">
+                    <img src="https://www.image2url.com/r2/default/images/1778533015366-461c616c-053a-4be1-b0ea-7fc4e20a6f9c.jpg" alt="Explore Our Products">
+                    <div class="impact-card-bottom">
+                        <h3>Explore Our Products</h3>
+                        <p>Our clients' needs are constantly changing. As a result, we are always seeking new and better ways to serve them.</p>
+                    </div>
+                    <div class="impact-card-overlay">
+                        <h3>Explore Our Products</h3>
+                        <p>Our products are designed to provide solutions at every level of our clients' career – whether as a trusted advisor in answer to boardroom needs or as a hands-on implementer for frontline teams.</p>
+                    </div>
+                </div>
+
+                <!-- Top Right Card -->
+                <div class="impact-card reveal">
+                    <img src="https://www.image2url.com/r2/default/images/1778533093109-306649ef-beae-42d4-aa0d-e8ec8cb6f8a6.jpg" alt="Explore Our Services">
+                    <div class="impact-card-bottom">
+                        <h3>Explore Our Services</h3>
+                        <p>Our work is founded on a rigorous understanding of South Africa's CSI dynamics, a charged political landscape and our clients' unique needs.</p>
+                    </div>
+                    <div class="impact-card-overlay">
+                        <h3>Explore Our Services</h3>
+                        <p>We work with clients to build strategies that are both ambitious and grounded in the realities of the communities they serve.</p>
+                    </div>
+                </div>
+
+                <!-- Bottom Wide Card -->
+                <div class="impact-card wide reveal">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=1400&h=600&fit=crop" alt="Rural Development">
+                    <div class="impact-card-bottom">
+                        <h3>Our business is guided by a 30-year vision of building better communities</h3>
+                        <p>Developing a thriving vision</p>
+                    </div>
+                    <div class="impact-card-overlay">
+                        <h3>Building Better Communities</h3>
+                        <p>Developing a thriving vision for the communities we serve across Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Our Experts / Team -->
+        <section class="reveal" style="padding: 40px 0;">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px;">
+                    <div>
+                        <span class="kicker">The Team</span>
+                        <h2 style="font-size: clamp(36px, 5vw, 64px); font-family: 'Figtree', sans-serif; font-weight: 800; margin-bottom: 16px;">The Voices <span class="serif">Behind</span> The Work</h2>
+                        <p style="font-size: 18px; color: var(--token-text-muted); max-width: 600px;">Meet the people driving the conversation on CSI across Africa.</p>
+                    </div>
+                    <a href="#" style="color: var(--token-primary); text-decoration: none; font-weight: 700; flex-shrink: 0;">View All →</a>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px;">
+                    <div class="card-v3" style="height: 420px; padding: 0;">
+                        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=600&h=800&fit=crop'); height: 100%;"></div>
+                        <div class="content" style="background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);">
+                            <h4 style="color: #fff;">Simphiwe Mtetwa</h4>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.7);">Founder & Chief Editor</p>
+                        </div>
+                    </div>
+                    <div class="card-v3" style="height: 420px; padding: 0;">
+                        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=600&h=800&fit=crop'); height: 100%;"></div>
+                        <div class="content" style="background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);">
+                            <h4 style="color: #fff;">Lunga Schoeman</h4>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.7);">CSI Strategy Director</p>
+                        </div>
+                    </div>
+                    <div class="card-v3" style="height: 420px; padding: 0;">
+                        <div class="img" style="background-image: url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&h=800&fit=crop'); height: 100%;"></div>
+                        <div class="content" style="background: linear-gradient(to top, rgba(0,0,0,0.85), transparent);">
+                            <h4 style="color: #fff;">Nomfundo Mogapi</h4>
+                            <p style="font-size: 12px; color: rgba(255,255,255,0.7);">Community Psychologist</p>
+                        </div>
+                    </div>
+                </div>
+        </section>
+
+
+    </main>
+
+    <footer class="footer-v3">
+        <div class="container">
+            <div class="footer-top">
+                <div class="logo-group">
+                    <img src="https://www.image2url.com/r2/default/images/1777649055436-1057d549-9fe6-4e04-b970-568610a4c0a0.png"
+                        alt="Simphiwe Mtetwa" style="height: 28px; width: auto; margin-bottom: 16px;">
+                    <p style="font-size: 14px; color: var(--token-text-muted); max-width: 300px; line-height: 1.6;">South Africa's leading CSI news, media and publishing firm. Building bridges between corporate investment and community empowerment.</p>
+                </div>
+                <div class="footer-nav-group">
+                    <div class="footer-col">
+                        <h4>Explore</h4>
+                        <a href="#">Home</a>
+                        <a href="#">About</a>
+                        <a href="#">Insights</a>
+                        <a href="#">Podcast</a>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Services</h4>
+                        <a href="#">Think Tank</a>
+                        <a href="#">Magazine</a>
+                        <a href="#">Expertise</a>
+                        <a href="#">Contact</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-v3">
+                <p>© Simphiwe Mtetwa 2026. All Rights Reserved.</p>
+                <p>Vision 2052</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
